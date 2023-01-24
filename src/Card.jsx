@@ -1,4 +1,3 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils/misc/isDisabled";
 import React, { createRef, useEffect, useRef, useState } from "react"
 import styled from "styled-components";
 
@@ -56,8 +55,7 @@ function Card() {
     function show(id){
         let divs = cardRef.current;
         for(let i=0; i<divs.length; i++){
-            if(divs[i].id===id && !cardsClickedRef.current.includes(id) && !cardsGuessed.current.includes(cards.find((card) => card.id===id))){
-                console.log(cardsGuessed.current);
+            if(divs[i].id===id && !cardsClickedRef.current.includes(id) && !cardsGuessed.current.includes(cards.find((card) => card.id===id).id)){
                 divs[i].firstChild.className="show";
                 countClicksRef.current = countClicksRef.current+1;
                 cardsClickedRef.current.push(id);
@@ -100,8 +98,6 @@ function Card() {
     function check(card1, card2){
         console.log(card1.value, card2.value);
         if(card1.value === card2.value && !cardsGuessed.current.includes(card1.id) && !cardsGuessed.current.includes(card2.id)){
-            console.log(cardsGuessed.current);
-
             return true;
         }
         return false;
