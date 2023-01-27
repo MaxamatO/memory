@@ -67,9 +67,6 @@ function Card() {
             }, 500)
         }
     }
-
-    // Fix: can click multiple cards fast, it bugs
-
     function hide(ids){
         let divs = cardRef.current;
         let card1 = cards.find((card) => card.id===ids[0]);
@@ -116,11 +113,18 @@ function Card() {
             }
     }
 
+    function handleClick(id){
+        if(countClicksRef.current === 2){
+            return;
+        }
+        show(id);
+    }
+
     return(
         <>
             {cards.map((card, i) => {
                 return(
-                    <MemoryCard key={card.id} id={card.id} ref={(ref) => (cardRef.current[i] = ref)} onClick={()=>show(card.id)}>
+                    <MemoryCard key={card.id} id={card.id} ref={(ref) => (cardRef.current[i] = ref)} onClick={()=>handleClick(card.id)}>
                             <p className="hidden">{card.value}</p>
                         </MemoryCard>
                     
