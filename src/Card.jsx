@@ -114,9 +114,7 @@ function Card() {
     }
 
     function handleClick(id){
-        if(countClicksRef.current === 2){
-            return;
-        }
+        if(countClicksRef.current === 2)return;
         show(id);
     }
 
@@ -161,6 +159,5 @@ const MemoryCard = styled.button`
         
     }
 `
-
 
 export default Card;
