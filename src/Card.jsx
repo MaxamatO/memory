@@ -1,5 +1,6 @@
 import React, { createRef, useEffect, useRef, useState } from "react"
 import styled from "styled-components";
+import populate from "./Redu.js";
 
 function Card() {
     const [cards, setCards] = useState([]);
@@ -13,59 +14,11 @@ function Card() {
         setCards(populate());
         }, []);
 
-    function populate(){
-        let array = [];
-        let usedNumbers = [];
-        let i = 0;
-        while(i<10){
-            let random = generateRandomNumber();
-                if(!usedNumbers.includes(random)){
-                    usedNumbers.push(random)
-                    array.push({"value":random, "id": crypto.randomUUID()});
-                    array.push({"value":random, "id": crypto.randomUUID()});
-                    i++;
-                }
-        }
-        shuffle(array);
-        return array;
-    }
-
-    function generateRandomNumber(){
-        return Math.floor(Math.random() * (20 - 1 + 1) + 1)
-    }
-    
-    function shuffle(array) {
-        let currentIndex = array.length,  randomIndex;
-    
-        // While there remain elements to shuffle.
-        while (currentIndex !== 0) {
-      
-          // Pick a remaining element.
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-      
-          // And swap it with the current element.
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-      
-        return array;
-      }
-
-    function show(id){
-        let divs = cardRef.current;
-        for(let i=0; i<divs.length; i++){
-            if(divs[i].id===id && !cardsClickedRef.current.includes(id) && !cardsGuessed.current.includes(cards.find((card) => card.id===id).id)){
-                divs[i].firstChild.className="show";
-                countClicksRef.current = countClicksRef.current+1;
-                cardsClickedRef.current.push(id);
-            }
-        }
-        if(countClicksRef.current===2){
-            setTimeout(()=>{
-                hide(cardsClickedRef.current);
-            }, 500)
-        }
+    function show(id, div){
+        div.firstChild.className="show";
+        countClicksRef.current = countClicksRef.current+1;
+        cardsClickedRef.current.push(id);
+        
     }
     function hide(ids){
         let divs = cardRef.current;
@@ -78,8 +31,6 @@ function Card() {
         else{
             for(let i=0; i<divs.length; i++){
                 let divToWorkWith = divs[i].firstChild;
-                
-            
                     if(divs[i].id===ids[0] && !cardsGuessed.current.includes(divs[i].id)){
                         divToWorkWith.className = "hidden";
                     }
@@ -115,7 +66,17 @@ function Card() {
 
     function handleClick(id){
         if(countClicksRef.current === 2)return;
-        show(id);
+        let divs = cardRef.current;
+        for(let i=0; i<divs.length; i++){
+            if(divs[i].id===id && !cardsClickedRef.current.includes(id) && !cardsGuessed.current.includes(cards.find((card) => card.id===id).id)){                
+                show(id, divs[i]);
+            }
+        }
+        if(countClicksRef.current===2){
+            setTimeout(()=>{
+                hide(cardsClickedRef.current);
+            }, 500)
+        }
     }
 
     return(
