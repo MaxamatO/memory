@@ -1,14 +1,13 @@
 import React, { createRef, useEffect, useRef, useState } from "react"
 import styled from "styled-components";
-import populate from "./Redu.js";
 
-function Card() {
+function Card(props) {
 
     return(
         <>
             
                 
-            <MemoryCard >
+            <MemoryCard onClick={() => console.log(props.id)} >
                     <p className="hidden"></p>
             </MemoryCard>
                     
