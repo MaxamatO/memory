@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useRef } from "react";
 
-function Board() {
+function Pairs() {
   const [cards, setCards] = useState(populate());
   const [openCards, setOpenCards] = useState([]);
 
@@ -147,4 +147,4 @@ const PlayAgainButton = styled.button`
   }
 `;
 
-export default Board;
+export default Pairs;
