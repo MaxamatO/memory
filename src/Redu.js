@@ -1,8 +1,8 @@
-function generateRandomNumber(){
+function generateRandomNumber() {
     return Math.floor(Math.random() * (20 - 1 + 1) + 1)
 }
 
-export default function populate(){
+export default function populate() {
     let array = [];
     let usedNumbers = [];
     let i = 0;
@@ -10,8 +10,8 @@ export default function populate(){
         let random = generateRandomNumber();
             if(!usedNumbers.includes(random)){
                 usedNumbers.push(random)
-                array.push({"value":random, "id": crypto.randomUUID()});
-                array.push({"value":random, "id": crypto.randomUUID()});
+                array.push(random);
+                array.push(random);
                 i++;
             }
     }

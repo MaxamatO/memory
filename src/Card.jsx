@@ -1,48 +1,36 @@
-import React, { createRef, useEffect, useRef, useState } from "react"
+import React from "react";
 import styled from "styled-components";
 
 function Card(props) {
-
-    return(
-        <>
-            
-                
-            <MemoryCard onClick={() => console.log(props.id)} >
-                    <p className="hidden"></p>
-            </MemoryCard>
-                    
-                
-            
-        </>
-    )
+  return (
+    <>
+      {props.guessed ? (
+        <GuessedCard>{props.value}</GuessedCard>
+      ) : (
+        <MemoryCard onClick={props.clickHandler}>
+          {props.open ? props.value : ""}
+        </MemoryCard>
+      )}
+    </>
+  );
 }
 
 const MemoryCard = styled.button`
-    background-color: #A99985;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    border: none;
+  background-color: #a99985;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 30px;
 
-    :hover{
-        background-color: #999999;
-        cursor: pointer;
-    }
-    .hidden{
-        opacity: 0;
-    }
-    .show{
-        opacity: 100;
-    }
-    p{
-        font-size: 30px;
-        margin-top: 50%;
-    }
-    .disabled{
-        
-        background-color: #70798C;
-        
-    }
-`
+  :hover {
+    background-color: #999999;
+    cursor: pointer;
+  }
+`;
+
+const GuessedCard = styled(MemoryCard)`
+  background-color: #919191;
+`;
 
 export default Card;
