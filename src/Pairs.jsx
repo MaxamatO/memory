@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import Card from "./Card";
+import Home from "./Home";
 import { useState } from "react";
 import populate from "./Redu.js";
 import { useEffect } from "react";
@@ -14,7 +15,7 @@ function Pairs() {
   const [guessedCards, setGuessedCards] = useState([]);
   const timeoutRef = useRef(null);
 
-  //   const endGameRef = useRef(false);
+  const endGameRef = useRef(false);
 
   useEffect(() => {
     const checkWin = () => {
@@ -54,46 +55,56 @@ function Pairs() {
   };
 
   const restartGame = (isRestart) => {
-    // endGameRef.current = !isRestart;
+    endGameRef.current = !isRestart;
     setCards(populate);
     setGuessedCards([]);
     setOpenCards([]);
   };
 
   return (
-    <Container>
-      {guessedCards.length === cards.length ? (
-        <WinContainer>
-          <WinHeader>
-            You have won! <br />
-            Do you want to play again? <br />
-          </WinHeader>
-          <PlayAgain>
-            <PlayAgainButton onClick={() => restartGame(true)}>
-              Yes
-            </PlayAgainButton>
-            {/* <PlayAgainButton onClick={() => restartGame(false)}>
-              No
-            </PlayAgainButton> */}
-          </PlayAgain>
-        </WinContainer>
+    <>
+      {endGameRef.current === true ? (
+        <Home></Home>
       ) : (
-        ""
+        <Container>
+          <MenuBackButton onClick={() => restartGame(false)}>
+            menu
+          </MenuBackButton>
+
+          {guessedCards.length === cards.length ? (
+            <WinContainer>
+              <WinHeader>
+                You have won! <br />
+                Do you want to play again? <br />
+              </WinHeader>
+              <PlayAgain>
+                <PlayAgainButton onClick={() => restartGame(true)}>
+                  Yes
+                </PlayAgainButton>
+                <PlayAgainButton onClick={() => restartGame(false)}>
+                  No
+                </PlayAgainButton>
+              </PlayAgain>
+            </WinContainer>
+          ) : (
+            ""
+          )}
+          <CardWrapper>
+            {cards.map((value, index) => {
+              return (
+                <Card
+                  key={index}
+                  value={value}
+                  open={isOpen(index)}
+                  clickHandler={() => handleClick(index)}
+                  guessed={isGuessed(index)}
+                />
+              );
+            })}
+          </CardWrapper>
+        </Container>
       )}
-      <CardWrapper>
-        {cards.map((value, index) => {
-          return (
-            <Card
-              key={index}
-              value={value}
-              open={isOpen(index)}
-              clickHandler={() => handleClick(index)}
-              guessed={isGuessed(index)}
-            />
-          );
-        })}
-      </CardWrapper>
-    </Container>
+    </>
   );
 }
 
@@ -147,4 +158,10 @@ const PlayAgainButton = styled.button`
   }
 `;
 
+const MenuBackButton = styled(PlayAgainButton)`
+  font-size: 3vw;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 1%;
+`;
 export default Pairs;
