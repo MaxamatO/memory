@@ -1,9 +1,9 @@
 import React from "react";
-import "./index.css";
+import "../index.css";
 import Card from "./Card";
-import Home from "./Home";
+import Home from "../Home";
 import { useState } from "react";
-import populate from "./Redu.js";
+import populate from "../Redu.js";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useRef } from "react";
@@ -159,9 +159,10 @@ const PlayAgainButton = styled.button`
 `;
 
 const MenuBackButton = styled(PlayAgainButton)`
-  font-size: 3vw;
+  font-size: 2.5vw;
   width: fit-content;
   height: fit-content;
   margin-top: 1%;
+  padding: 1%;
 `;
 export default Pairs;

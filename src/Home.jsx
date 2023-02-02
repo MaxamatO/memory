@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Pairs from "./Pairs";
+import Pairs from "./pairs_game/Pairs";
 import styled from "styled-components";
 import "./index.css";
+import ReactionTime from "./reaction_time/ReactionTime";
 function Home() {
   const [settings, setSettings] = useState({
     game: "",
@@ -13,7 +14,7 @@ function Home() {
       case "Find Pairs":
         return <Pairs level={settings.level} />;
       case "Reaction Time Test":
-        return <ComingSoon>Coming Soon</ComingSoon>;
+        return <ReactionTime></ReactionTime>;
       default:
         return;
     }
