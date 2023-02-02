@@ -21,7 +21,7 @@ const MemoryCard = styled.button`
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 30px;
+  font-size: 3vw;
 
   :hover {
     background-color: #999999;
