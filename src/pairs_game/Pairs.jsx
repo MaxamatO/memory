@@ -3,13 +3,13 @@ import "../index.css";
 import Card from "./Card";
 import Home from "../Home";
 import { useState } from "react";
-import populate from "../Redu.js";
+import populate from "../helper_functions/Redu.js";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useRef } from "react";
 
 function Pairs() {
-  const [cards, setCards] = useState(populate());
+  const [cards, setCards] = useState(populate("PG"));
   const [openCards, setOpenCards] = useState([]);
 
   const [guessedCards, setGuessedCards] = useState([]);
