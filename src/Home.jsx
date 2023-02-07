@@ -60,8 +60,4 @@ const GameOption = styled.a`
   }
 `;
 
-const ComingSoon = styled.h1`
-  font-size: 3rem;
-`;
-
 export default Home;

@@ -15,7 +15,7 @@ function Pairs() {
   const [guessedCards, setGuessedCards] = useState([]);
   const timeoutRef = useRef(null);
 
-  const endGameRef = useRef(false);
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
 
   useEffect(() => {
     const checkWin = () => {
@@ -34,6 +34,7 @@ function Pairs() {
     if (openCards.length === 2) {
       checkWin();
     }
+    // eslint-disable-next-line
   }, [cards, openCards]);
 
   const isOpen = (index) => {
@@ -55,7 +56,7 @@ function Pairs() {
   };
 
   const restartGame = (isRestart) => {
-    endGameRef.current = !isRestart;
+    setIsMenuClicked(!isRestart);
     setCards(populate);
     setGuessedCards([]);
     setOpenCards([]);
@@ -63,7 +64,7 @@ function Pairs() {
 
   return (
     <>
-      {endGameRef.current === true ? (
+      {isMenuClicked === true ? (
         <Home></Home>
       ) : (
         <Container>

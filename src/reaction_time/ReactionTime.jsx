@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import styled from "styled-components";
 import populate from "../helper_functions/Redu.js";
+import Home from "../Home.jsx";
 
 const RED = "#d47c7c";
 const GREEN = "#9ccc74";
@@ -13,6 +14,7 @@ function ReactionTime() {
   const timeToChangeColorRef = useRef();
 
   const reactionTime = useRef([0, 0]);
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
 
   useEffect(() => {
     if (backgroundClicker === RED) {
@@ -20,6 +22,7 @@ function ReactionTime() {
         changeColor();
       }, populate("RT") * 1000);
     }
+    // eslint-disable-next-line
   }, [backgroundClicker]);
 
   const changeColor = () => {
@@ -59,11 +62,18 @@ function ReactionTime() {
 
   return (
     <>
-      <Container>
-        <MainContent $start={backgroundClicker} onClick={() => handleClick()}>
-          {renderColor()}
-        </MainContent>
-      </Container>
+      {isMenuClicked === true ? (
+        <Home></Home>
+      ) : (
+        <Container>
+          <MenuBackButton onClick={() => setIsMenuClicked(true)}>
+            menu
+          </MenuBackButton>
+          <MainContent $start={backgroundClicker} onClick={() => handleClick()}>
+            {renderColor()}
+          </MainContent>
+        </Container>
+      )}
     </>
   );
 }
@@ -91,4 +101,19 @@ const Alert = styled.h1`
   user-select: none;
 `;
 
+const MenuBackButton = styled.button`
+  font-size: 2.5vw;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 1%;
+  padding: 1%;
+  border-radius: 10em;
+  margin-right: 2%;
+  margin-left: 2%;
+  position: absolute;
+  :hover {
+    cursor: pointer;
+    background-color: #b1aeae9e;
+  }
+`;
 export default ReactionTime;
