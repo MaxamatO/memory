@@ -1,6 +1,18 @@
 export default function populate(gameName) {
-    if(gameName === "PG"){
-        let array = [];
+    switch (gameName){
+        case "FP": return findPairsPopulate();
+        case "RT": return setRandomTime();
+        case "TT": return setRandomText();
+    }
+        
+}
+
+function setRandomText(){
+    return "lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum";
+}
+
+function findPairsPopulate(){
+    let array = [];
         let usedNumbers = [];
         let i = 0;
         while(i<10){
@@ -14,9 +26,6 @@ export default function populate(gameName) {
         }
         shuffle(array);
         return array;
-    }
-    return setRandomTime();
-    
 }
 
 function setRandomTime(){
