@@ -3,6 +3,7 @@ import Pairs from "./pairs_game/Pairs";
 import styled from "styled-components";
 import "./index.css";
 import ReactionTime from "./reaction_time/ReactionTime";
+import TypingTest from "./typing_test/TypingText";
 function Home() {
   const [settings, setSettings] = useState({
     game: "",
@@ -15,6 +16,8 @@ function Home() {
         return <Pairs level={settings.level} />;
       case "Reaction Time Test":
         return <ReactionTime></ReactionTime>;
+      case "Typing Test":
+        return <TypingTest></TypingTest>;
       default:
         return;
     }
@@ -31,6 +34,9 @@ function Home() {
             onClick={() => setSettings({ game: "Reaction Time Test" })}
           >
             Reaction Time Test <br />
+          </GameOption>
+          <GameOption onClick={() => setSettings({ game: "Typing Test" })}>
+            Typing Speed Test <br />
           </GameOption>
         </MenuContainer>
       ) : (
