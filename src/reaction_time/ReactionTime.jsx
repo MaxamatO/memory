@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import styled from "styled-components";
 import populate from "../helper_functions/Redu.js";
 import Home from "../Home.jsx";
+import Board from "./Board.jsx";
 
 const RED = "#d47c7c";
 const GREEN = "#9ccc74";
@@ -69,9 +70,11 @@ function ReactionTime() {
           <MenuBackButton onClick={() => setIsMenuClicked(true)}>
             menu
           </MenuBackButton>
-          <MainContent $start={backgroundClicker} onClick={() => handleClick()}>
-            {renderColor()}
-          </MainContent>
+          <Board
+            $start={backgroundClicker}
+            clickHandler={() => handleClick}
+            renderColor={renderColor}
+          ></Board>
         </Container>
       )}
     </>
@@ -82,17 +85,6 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-`;
-
-const MainContent = styled.div`
-  width: 60vw;
-  height: 60vh;
-  margin: auto auto;
-  display: flex;
-  background-color: ${(props) => props.$start};
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 const Alert = styled.h1`
