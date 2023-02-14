@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { useRef } from "react";
 
 function Pairs() {
-  const [cards, setCards] = useState(populate("PG"));
+  const [cards, setCards] = useState(populate("FP"));
   const [openCards, setOpenCards] = useState([]);
 
   const [guessedCards, setGuessedCards] = useState([]);
