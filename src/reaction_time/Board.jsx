@@ -5,6 +5,7 @@ const Board = (props) => {
   return (
     <MainContent onClick={() => props.clickHandler()} $start={props.$start}>
       {props.renderColor()}
+      {console.log("This" + props.$start)}
     </MainContent>
   );
 };

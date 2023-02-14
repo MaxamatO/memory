@@ -72,7 +72,7 @@ function ReactionTime() {
           </MenuBackButton>
           <Board
             $start={backgroundClicker}
-            clickHandler={() => handleClick}
+            clickHandler={handleClick}
             renderColor={renderColor}
           ></Board>
         </Container>
