@@ -3,12 +3,13 @@ export default function populate(gameName) {
         case "FP": return findPairsPopulate();
         case "RT": return setRandomTime();
         case "TT": return setRandomText();
+        default: return;
     }
         
 }
 
 function setRandomText(){
-    return "lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum";
+    return "test text to type";
 }
 
 function findPairsPopulate(){
