@@ -34,7 +34,6 @@ function ReactionTime() {
       setBackgroundClicker(RED);
     } else {
       reactionTime.current[1] = Date.now();
-      console.log(reactionTime.current[1] - reactionTime.current[0]);
       setBackgroundClicker(YELLOW);
     }
     clearTimeout(timeToChangeColorRef.current);
