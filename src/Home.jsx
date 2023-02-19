@@ -91,7 +91,7 @@ const GameOptionDiv = styled.div`
 `;
 const GameOption = styled.h1`
   text-decoration: none;
-  font-size: 2em;
+  font-size: 2vw;
   align-self: center;
 `;
 
