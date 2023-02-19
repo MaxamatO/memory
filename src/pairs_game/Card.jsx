@@ -16,7 +16,7 @@ function Card(props) {
 }
 
 const MemoryCard = styled.button`
-  background-color: #a99985;
+  background-color: #618dbe;
   text-align: center;
   width: 100%;
   height: 100%;
