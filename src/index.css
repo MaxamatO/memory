@@ -1,6 +1,6 @@
 :root{
-  --bg-color: #F5F1ED;
-  --board-color: #DAD2BC;
+  --bg-color: white;
+  --board-color: #f0f0f4;
 }
 html, #root {
   height: 100vh;
