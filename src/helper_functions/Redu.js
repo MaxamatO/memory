@@ -4,12 +4,12 @@ export default function populate(gameName) {
         case "RT": return setRandomTime();
         case "TT": return setRandomText();
         default: return;
-    }
-        
+        }
 }
 
 function setRandomText(){
-    return "test text to type";
+    var randomWords = require('random-words')
+    return randomWords(20);
 }
 
 function findPairsPopulate(){
