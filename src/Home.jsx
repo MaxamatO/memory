@@ -75,12 +75,6 @@ const MenuContainer = styled.div`
   padding: 1vw;
 `;
 
-// const HeadingContainer = styled.div`
-//   width: 100%;
-//   height: 30%;
-//   background-color: black;
-// `;
-
 const GameOptionDiv = styled.div`
   height: 50%;
   width: 30%;
