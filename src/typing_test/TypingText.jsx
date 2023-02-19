@@ -13,7 +13,7 @@ const TypingTest = () => {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const currentWordRef = useRef();
 
-  const timeToFinish = useRef(null);
+  // const timeToFinish = useRef(null);
 
   useEffect(() => {
     if (textToType.length === 0) return;

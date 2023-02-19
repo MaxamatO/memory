@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Pairs from "./pairs_game/Pairs";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import "./index.css";
 import ReactionTime from "./reaction_time/ReactionTime";
 import TypingTest from "./typing_test/TypingText";
@@ -75,11 +75,11 @@ const MenuContainer = styled.div`
   padding: 1vw;
 `;
 
-const HeadingContainer = styled.div`
-  width: 100%;
-  height: 30%;
-  background-color: black;
-`;
+// const HeadingContainer = styled.div`
+//   width: 100%;
+//   height: 30%;
+//   background-color: black;
+// `;
 
 const GameOptionDiv = styled.div`
   height: 50%;
