@@ -8,15 +8,18 @@ import Home from "../Home";
 const BASIC = "black";
 
 const TypingTest = () => {
-  const [textToType, setTextToType] = useState(populate("TT").split(" "));
+  const [textToType, setTextToType] = useState(populate("TT"));
   const [textInView, setTextInView] = useState();
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const currentWordRef = useRef();
+
+  const timeToFinish = useRef(null);
 
   useEffect(() => {
     if (textToType.length === 0) return;
     setTextInView(textToType[0]);
     currentWordRef.current.value = "";
+    // eslint-disable-next-line
   }, [textToType]);
 
   const checkWord = () => {
