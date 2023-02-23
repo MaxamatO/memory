@@ -6,6 +6,35 @@ import Text from "./Text";
 import Home from "../Home";
 
 const BASIC = "black";
+const LETTERS = [
+  "q",
+  "w",
+  "e",
+  "r",
+  "t",
+  "y",
+  "u",
+  "i",
+  "o",
+  "p",
+  "a",
+  "s",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+  "Backspace",
+];
 
 const TypingTest = () => {
   const [textToType, setTextToType] = useState(populate("TT"));
@@ -17,24 +46,31 @@ const TypingTest = () => {
 
   useEffect(() => {
     if (textToType.length === 0) return;
+
     setTextInView(textToType[0]);
     currentWordRef.current.value = "";
     // eslint-disable-next-line
   }, [textToType]);
 
-  const checkWord = () => {
+  const checkWord = (event) => {
     let slicedTextToType = textToType.slice();
     let wordToCompare = slicedTextToType[0];
     if (wordToCompare === currentWordRef.current.value.trim()) {
       slicedTextToType.shift();
       setTextToType(slicedTextToType);
     }
+    console.log("hello");
   };
 
   const restart = () => {
-    setTextToType(populate("TT").split(" "));
+    setTextToType(populate("TT"));
     setTextInView(textToType.slice()[0]);
     return;
+  };
+
+  const handleKeyDown = (event) => {
+    if (!LETTERS.includes(event.key)) return;
+    checkWord();
   };
 
   return (
@@ -62,7 +98,7 @@ const TypingTest = () => {
                   </TextContainer>
                   <InputContainer
                     ref={currentWordRef}
-                    onChange={() => checkWord()}
+                    onKeyUp={(event) => handleKeyDown(event)}
                   ></InputContainer>
                 </>
               )}
