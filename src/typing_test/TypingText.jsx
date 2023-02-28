@@ -40,31 +40,53 @@ const TypingTest = () => {
   const [textToType, setTextToType] = useState(populate("TT"));
   const [textInView, setTextInView] = useState();
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
   const currentWordRef = useRef();
 
-  // const timeToFinish = useRef(null);
+  const [timeToFinish, setTimeToFinish] = useState(15);
+  const timer = useRef(null);
+  const correctWords = useRef(0);
 
   useEffect(() => {
-    if (textToType.length === 0) return;
+    if (textToType.length === 0) {
+      setIsGameOver(true);
+      return;
+    }
+    if (timeToFinish === 0) {
+      setIsGameOver(true);
+      return;
+    }
+
+    timer.current = setTimeout(changeTime, 1000);
+    clearTimeout(timer);
 
     setTextInView(textToType[0]);
-    currentWordRef.current.value = "";
-    // eslint-disable-next-line
-  }, [textToType]);
 
-  const checkWord = (event) => {
+    // eslint-disable-next-line
+  }, [textToType, timeToFinish, isGameOver]);
+
+  function changeTime() {
+    setTimeToFinish(timeToFinish - 1);
+  }
+
+  const checkWord = () => {
     let slicedTextToType = textToType.slice();
     let wordToCompare = slicedTextToType[0];
     if (wordToCompare === currentWordRef.current.value.trim()) {
       slicedTextToType.shift();
       setTextToType(slicedTextToType);
+      correctWords.current = correctWords.current + 1;
+      currentWordRef.current.value = "";
     }
-    console.log("hello");
   };
 
   const restart = () => {
     setTextToType(populate("TT"));
     setTextInView(textToType.slice()[0]);
+    setTimeToFinish(15);
+    setIsGameOver(false);
+    correctWords.current = 0;
+    clearTimeout(timer);
     return;
   };
 
@@ -73,20 +95,25 @@ const TypingTest = () => {
     checkWord();
   };
 
+  const menuClicked = () => {
+    clearTimeout(timer);
+    setIsMenuClicked(true);
+  };
+
   return (
     <>
       {isMenuClicked ? (
         <Home></Home>
       ) : (
         <>
-          <MenuBackButton onClick={() => setIsMenuClicked(true)}>
-            menu
-          </MenuBackButton>
+          <MenuBackButton onClick={() => menuClicked()}>menu</MenuBackButton>
           <Container>
             <Content>
-              {textToType.length === 0 ? (
+              {isGameOver === true ? (
                 <GameOver>
                   <Information>
+                    {" "}
+                    You got {correctWords.current * 4} WPM <br />
                     Good job! Press the button to play again
                   </Information>
                   <PressMe onClick={() => restart()}>play again</PressMe>

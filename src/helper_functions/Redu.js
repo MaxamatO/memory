@@ -9,7 +9,7 @@ export default function populate(gameName) {
 
 function setRandomText(){
     var randomWords = require('random-words')
-    return randomWords(20);
+    return randomWords(400);
 }
 
 function findPairsPopulate(){
